@@ -20,12 +20,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
       res.status(200).json(data);
     } else if (req.method === "DELETE") {
-      const body = JSON.parse(req.body);
-      console.log(body);
-      
       const data = await prisma.post.delete({
         where: {
-            id: body.id
+            id: req.query.id
           }
       });
       res.status(200).json(data);

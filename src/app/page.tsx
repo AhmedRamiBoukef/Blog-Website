@@ -2,11 +2,7 @@ import Button from "../components/button";
 import Blog from "../components/Blog";
 
 const getBlogs = async () => {
-  const data = await fetch("http://localhost:3000/api/blogs", {
-    next: {
-      revalidate: 10,
-    },
-  });
+  const data = await fetch("http://localhost:3000/api/blogs", { cache: 'no-store' });
   if (!data.ok) {
     console.log(data);
   }

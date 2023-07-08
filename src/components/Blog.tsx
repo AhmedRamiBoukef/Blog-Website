@@ -1,15 +1,15 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { FC } from "react";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 
 const deleteBlog = async (id: string) => {
+  
   const data = await fetch("http://localhost:3000/api/" + id, {
     method: "DELETE",
-    body: JSON.stringify({ id }),
-    //@ts-ignore
-    "Content-Type": "application/json",
   });
+  console.log(data);
+  
   if (!data.ok) {
     console.log("err");
   }
@@ -27,14 +27,17 @@ const Blog: FC<blogProps> = ({ id, title, body, createdAt }) => {
   const handleEdit = async () => {
     router.push("/blog/edit/" + id);
   };
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault();
     toast.loading("Sending Request 🚀");
     await deleteBlog(id);
     toast.dismiss();
+    router.refresh();
     toast.success("Blog Deleted Successfully");
   };
   return (
     <div className="bg-slate-200 text-slate-800 rounded text-sm px-2 py-4 w-3/4 mt-6">
+      <Toaster />
       <div className="flex justify-between items-center">
         <h2 className="font-semibold">{title}</h2>
         <div>
