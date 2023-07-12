@@ -5,7 +5,7 @@ import { Toaster, toast } from "react-hot-toast";
 
 const deleteBlog = async (id: string) => {
   
-  const data = await fetch("http://localhost:3000/api/" + id, {
+  const data = await fetch("http://127.0.0.1:3000/api/" + id, {
     method: "DELETE",
   });
   console.log(data);

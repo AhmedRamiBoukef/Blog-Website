@@ -2,7 +2,7 @@ import Button from "../components/button";
 import Blog from "../components/Blog";
 
 const getBlogs = async () => {
-  const data = await fetch("127.0.0.1/api/blogs", { cache: 'no-store' });
+  const data = await fetch("http://127.0.0.1:3000/api/blogs", { cache: 'no-store' });
   if (!data.ok) {
     console.log(data);
   }

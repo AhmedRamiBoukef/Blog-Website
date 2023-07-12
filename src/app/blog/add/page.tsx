@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { FC, FormEvent, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 const postBlog = async (title: string, body: string) => {
-  const data = await fetch("127.0.0.1/api/blogs", {
+  const data = await fetch("http://127.0.0.1:3000/api/blogs", {
     method: "POST",
     body: JSON.stringify({ title, body }),
     //@ts-ignore
