@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { FC, FormEvent, useEffect, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 const editBlog = async (title: string, body: string, id: string) => {
-  const data = await fetch("http://localhost:3000/api/" + id, {
+  const data = await fetch("127.0.0.1/api/" + id, {
     method: "PUT",
     body: JSON.stringify({ title, body, id }),
     //@ts-ignore
@@ -24,7 +24,7 @@ const EditBlog: FC<pageProps> = ({ params }) => {
   useEffect(() => {
     toast.loading("Fetching Data 🚀");
     const getData = async () => {
-      const data = await fetch("http://localhost:3000/api/" + params.id);
+      const data = await fetch("127.0.0.1/api/" + params.id);
       const res = await data.json();
       if (titleRef.current && descriptionRef.current) {
       titleRef.current.value = res.title;
