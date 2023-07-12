@@ -27,8 +27,7 @@ const Blog: FC<blogProps> = ({ id, title, body, createdAt }) => {
   const handleEdit = async () => {
     router.push("/blog/edit/" + id);
   };
-  const handleDelete = async (e) => {
-    e.preventDefault();
+  const handleDelete = async () => {
     toast.loading("Sending Request 🚀");
     await deleteBlog(id);
     toast.dismiss();
