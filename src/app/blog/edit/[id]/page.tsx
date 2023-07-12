@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FC, useEffect, useRef } from "react";
+import { FC, FormEvent, useEffect, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 const editBlog = async (title: string, body: string, id: string) => {
   const data = await fetch("http://localhost:3000/api/" + id, {
@@ -36,7 +36,7 @@ const EditBlog: FC<pageProps> = ({ params }) => {
     toast.success("Data fetched Successfully");
   }, []);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (titleRef.current && descriptionRef.current) {
       toast.loading("Sending Request 🚀");

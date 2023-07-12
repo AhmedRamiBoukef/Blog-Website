@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { FC, useRef } from "react";
+import { FC, FormEvent, useRef } from "react";
 import { Toaster, toast } from "react-hot-toast";
 const postBlog = async (title: string, body: string) => {
   const data = await fetch("http://localhost:3000/api/blogs", {
@@ -19,7 +19,7 @@ const AddBlog: FC<pageProps> = ({}) => {
   const router = useRouter();
   const titleRef = useRef<HTMLInputElement | null>(null);
   const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (titleRef.current && descriptionRef.current) {
       toast.loading("Sending Request 🚀");
